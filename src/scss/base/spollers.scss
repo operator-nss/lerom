@@ -1,0 +1,31 @@
+// Базовые стили спойлеров
+// Сниппет (HTML): spoller
+
+// Блок со спойлерами
+.spollers {
+	display: grid;
+	gap: 15px;
+}
+// Спойлер
+.spollers__item {
+	font-size: rem(20);
+}
+// Заголовок спойлера
+.spollers__title {
+	width: 100%;
+	cursor: default;
+	text-align: left;
+	border: 1px solid #eee;
+	padding: rem(10) rem(15);
+	border-radius: rem(5);
+	position: relative;
+	._spoller-init & {
+		cursor: pointer;
+		}
+}
+// Контент спойлера
+.spollers__body {
+	padding: rem(20);
+	border-radius: rem(5);
+	border: 1px solid #eee;
+}

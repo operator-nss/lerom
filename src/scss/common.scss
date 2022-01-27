@@ -1,0 +1,11 @@
+// Заголовки, общие БЄМ блоки и проче...
+.phone {
+   white-space: nowrap;
+}
+
+.no-icon {
+   justify-content: center;
+   &::before {
+      display: none;
+   }
+}
