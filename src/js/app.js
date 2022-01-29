@@ -159,7 +159,7 @@ import * as flsScroll from "./files/scroll/scroll.js";
 // flsScroll.pageNavigation();
 
 // Функционал добавления классов к хедеру при прокрутке
-// flsScroll.headerScroll();
+flsScroll.headerScroll();
 
 // Функционал липкого блока
 // flsScroll.stickyBlock();

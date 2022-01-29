@@ -64,6 +64,21 @@
 //========================================================================================================================================================
 
 .header {
+   position: absolute;
+   top: 0;
+   left: 0;
+   width: 100%;
+   z-index: 50;
+   background-color: #fff;
+   &._header-scroll {
+      box-shadow: 0 0 5px rgba(0, 0, 0, 0.3);
+      top: -200%;
+      position: fixed;
+   }
+   &._header-show {
+      transition: top 0.3s ease 0s;
+      top: 0;
+   }
    // .header__top
 
    &__top {
@@ -76,6 +91,9 @@
       display: flex;
       width: 100%;
       align-items: center;
+      ._header-scroll & {
+         min-height: rem(70);
+      }
       &::before {
          content: "";
          background-color: #fff;
@@ -95,8 +113,17 @@
       color: #000000;
       padding: rem(9) rem(0);
       border-bottom: 1px solid #efefef;
-      @media (max-width:$tablet){
+      @media (max-width: $tablet) {
          padding: 0;
+      }
+      ._header-scroll & {
+         max-height: rem(0);
+         min-height: rem(0);
+         padding: 0;
+         border-bottom: none;
+         @media (min-width: $tablet) {
+            display: none;
+         }
       }
    }
    // .header__logo
@@ -307,7 +334,7 @@
    &__container {
       display: flex;
       align-items: center;
-      @media (max-width:$tablet){
+      @media (max-width: $tablet) {
          padding: 0;
          height: 100%;
       }
@@ -316,6 +343,9 @@
    // .bottom-header__catalog
 
    &__catalog {
+      ._header-scroll & {
+         display: none;
+      }
    }
 
    // .bottom-header__menu
@@ -329,10 +359,13 @@
       color: #fff;
       display: flex;
       position: relative;
-      @media (max-width:$tablet){
+      @media (max-width: $tablet) {
          flex: 0 1 50%;
          width: 100%;
          height: 53px;
+      }
+      ._header-scroll & {
+         display: none;
       }
    }
 
@@ -359,8 +392,8 @@
          right: 15px;
          top: 8px;
       }
-      @media (max-width:$tablet){
-         &::before{
+      @media (max-width: $tablet) {
+         &::before {
             top: rem(20);
             color: #fff;
             font-size: rem(13);
@@ -369,11 +402,10 @@
    }
 }
 .catalog-bottom-header {
-   @media (max-width:$tablet){
+   @media (max-width: $tablet) {
       flex: 0 1 50%;
       width: 100%;
-      background-color: #BB2822;
-      padding: rem(16.4) rem(13);
+      background-color: #bb2822;
    }
    // .catalog-bottom-header__item
 
@@ -391,7 +423,7 @@
       line-height: 127.47%;
       letter-spacing: -0.5px;
       color: #bb2822;
-      margin-right: rem(10);
+      padding: rem(10) rem(10);
       &::after {
          content: "";
       }
@@ -405,8 +437,8 @@
             border-right: 7px solid transparent;
             border-top: 7px solid #bb2822;
          }
-         @media (max-width:$tablet){
-            &::after{
+         @media (max-width: $tablet) {
+            &::after {
                border-top: 7px solid #fff;
             }
          }
@@ -416,10 +448,10 @@
             transform: rotate(-180deg);
          }
       }
-      @media (max-width:$tablet){
+      @media (max-width: $tablet) {
          color: #fff;
          width: 100%;
-
+         padding: rem(16.4) rem(13);
       }
    }
 
@@ -427,12 +459,13 @@
 
    &__body {
       position: absolute;
-      top: 30px;
+      top: 50px;
+      z-index: 3;
       padding: rem(20) rem(25);
       background-color: #fff;
       box-shadow: 4px 4px 8px 0px rgba(34, 60, 80, 0.2);
-      @media (max-width:$tablet){
-         top: 40px;
+      @media (max-width: $tablet) {
+         top: 52px;
          width: 100%;
       }
    }
@@ -461,7 +494,9 @@
 .menu {
    width: 100%;
    flex: 1 1 auto;
-
+   .menu-open & {
+      flex: 0 0 rem(10);
+   }
 
    // .menu__header
 
@@ -521,6 +556,7 @@
       height: 73%;
       top: -120%;
       left: 0;
+      opacity: 0;
       transition: all 0.3s ease 0s;
       z-index: 4;
       display: flex;
@@ -531,6 +567,7 @@
          content: "";
          display: block;
          position: absolute;
+
          bottom: 40px;
          left: 0;
          width: 100%;
@@ -542,7 +579,30 @@
       }
 
       .menu-open & {
-         top: rem(117);
+         top: rem(95);
+         opacity: 1;
+      }
+      ._header-scroll & {
+         position: fixed;
+         width: 100%;
+         height: 100%;
+         top: rem(70);
+         left: -100%;
+         background-color: #fff;
+         transition: all 0.3s ease 0s;
+         z-index: 5;
+         display: flex;
+         flex-direction: column;
+         color: #2b2b2b;
+         opacity: 0;
+         .menu-open & {
+            left: 0;
+            top: rem(70);
+            opacity: 1;
+            &::before {
+               left: 0;
+            }
+         }
       }
    }
 
